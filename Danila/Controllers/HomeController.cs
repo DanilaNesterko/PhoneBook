@@ -164,10 +164,11 @@ namespace Danila.Controllers
         [HttpGet]
         public ActionResult DeleteGroup(int? id)
         {
-            Group group = _db.Groups.Where(a => a.Id == id).FirstOrDefault();
+            Group group = _db.Groups.Include("Books").Where(a => a.Id == id).FirstOrDefault();
             if (group != null)
             {
-                _db.Groups.Remove(group);
+				group.Books.Clear();
+				_db.Groups.Remove(group);
                 _db.SaveChanges();
             }
             return RedirectToAction("Groups");

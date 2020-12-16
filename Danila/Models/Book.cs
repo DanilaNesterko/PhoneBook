@@ -12,5 +12,11 @@ namespace Danila.Models
         public string Lastname { get; set; }
         public string Mail { get; set; }
         public string Telefon { get; set; }
-    }
+		public ICollection<Group> Groups { get; set; }
+
+		public Book()
+		{
+			Groups = new List<Group>();
+		}
+	}
 }
