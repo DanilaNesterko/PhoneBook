@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Groups";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Groups</title>
+</head>
+<body>
+    <div>
+        <h3>
+            <a href="/Home/CreateGroup" class="btn btn-default">Add new group</a>
+        </h3>
+        <table class="table table-bordered">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Books</th>
+                <th scope="col">Actions</th>
+            </tr>
+            @foreach (var p in ViewBag.Groups)
+            {
+                <tr>
+                    <td>@p.Title</td>
+                    <td>
+                        @foreach (var a in p.Books)
+                        {
+                            <a href="/Home/Index/@a.Id" class="btn btn-default">@a.Name, @a.Lastname</a>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Home/EditGroup/@p.Id" class="btn btn-default">Edit</a>
+                        <a href="/Home/DeleteGroup/@p.Id" class="btn btn-default">Remove</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

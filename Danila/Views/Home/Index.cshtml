@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <div>
+        <h3>
+            <a href="/Home/CreateBook" class="btn btn-default">Add new user</a><br>
+        </h3>
+        <table class="table table-bordered">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Telefon</th>
+                <th scope="col">Actions</th>
+            </tr>
+            @foreach (var p in ViewBag.Books)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Lastname</td>
+                    <td>@p.Mail</td>
+                    <td>@p.Telefon</td>
+                    <td>
+                        <a href="/Home/EditBook/@p.Id" class="btn btn-default">Edit</a>
+                        <a href="/Home/DeleteBook/@p.Id" class="btn btn-default">Remove</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <select id="getS" class="btn btn-default">
+            <option value="Name">Name</option>
+            <option value="Lastname">Lastname</option>
+            <option value="Telefon">Telefon</option>
+            <option value="Mail">Mail</option>
+        </select>
+        <input type="text" id="get" name="name" value="" placeholder="Type some.." />
+        <a href="?" class="get btn btn-default">Search</a>
+        <script>
+            let ppc = document.getElementsByClassName("get")[0];
+            setInterval(function () {
+                ppc.href = "?" + document.getElementById("getS").value + "=" + document.getElementById("get").value;
+            }, 1);
+        </script>
+    </div>
+</body>
+</html>
